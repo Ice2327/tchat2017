@@ -6,12 +6,12 @@ if(!strstr($_SERVER['PHP_SELF'],"index.php")){
 
 $sql = "UPDATE util SET actif=1 WHERE idutil=$id AND clefutil='$clef' AND actif=0;
     ";
-$recup_sql = mysqli_query($db, $sql)or die(mysqli_error($db));
+$recup_sql = $db->db->exec($sql);
 
-if(mysqli_affected_rows($db)){
-    header("Location: ./admin/ ");
+if($recup_sql){
+    header("Location: ./?actif=ok");
 }else{
-    echo "Pas Activé";
+    header("Location: ./?actif=ko");
 }
 ?>
 <!DOCTYPE html>
@@ -21,9 +21,5 @@ if(mysqli_affected_rows($db)){
         <title>Activation de votre compte</title>
     </head>
     <body>
-        <hr/>
-        <div>
-            
-        </div>
     </body>
 </html>

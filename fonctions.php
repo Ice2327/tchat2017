@@ -3,9 +3,10 @@
 
 
 function sha256($chaine){
-    return hash('sha256', $chaine);
+    $chaine = hash('md5', $chaine);
+    $chaine = hash('sha256', $chaine);
+    return $chaine;
 }
-
 
 function clef_u($user){
     $sortie = uniqid(sha256($user)).sha1(time()).md5(mt_rand(1, 999999999));
@@ -31,7 +32,7 @@ function valide_compte($mail_util,$util_name,$idutil,$clef_unique){
       </head>
       <body>
        <p>Merci $util_name pour votre inscription sur le tchat2017</p>
-       <p>Cliquez sur <a href='tchat.webdev-cf2m.be?confirm&id=$idutil&c=$clef_unique' target='_blank'>ce lien</a> pour activer votre compte</p>
+       <p>Cliquez sur <a href='http://tchat.webdev-cf2m.be?confirm&id=$idutil&c=$clef_unique' target='_blank'>ce lien</a> pour activer votre compte</p>
        <p>Si vous ne vous êtes pas inscrit sur notre site, vous pouvez ignorer ce mail</p>
       </body>
      </html>
